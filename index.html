@@ -3,51 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sorti365 - Pronósticos y Juegos</title>
-    <!-- Tailwind CSS para maquetación rápida -->
+    <title>Sorti365 - Pronósticos y Registro VIP</title>
+    <!-- Tailwind CSS para diseño fluido y ultra responsivo -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #060e0a;
+            background-color: #030805;
             overflow-x: hidden;
         }
-        /* Efecto de Luces de Estadio y Atmósfera de Fútbol */
-        .stadium-glow {
+        /* Atmósfera de estadio con degradados dinámicos */
+        .dynamic-stadium {
             background: 
-                radial-gradient(circle at 50% 10%, rgba(34, 197, 94, 0.25) 0%, transparent 60%),
-                radial-gradient(circle at 50% 90%, rgba(22, 163, 74, 0.15) 0%, transparent 50%),
-                linear-gradient(to bottom, #040a07, #0b1c12, #040a07);
+                radial-gradient(circle at 50% 5%, rgba(16, 185, 129, 0.28) 0%, transparent 55%),
+                radial-gradient(circle at 85% 60%, rgba(249, 115, 22, 0.12) 0%, transparent 45%),
+                radial-gradient(circle at 15% 70%, rgba(5, 150, 105, 0.15) 0%, transparent 40%),
+                linear-gradient(to bottom, #030805, #08150e, #030705);
         }
-        /* Tipografía estilo Copa Mundial */
-        .world-cup-title {
-            text-shadow: 0 4px 12px rgba(249, 115, 22, 0.5), 0 2px 4px rgba(0, 0, 0, 0.8);
+        /* Tipografía con brillo neon dinámico */
+        .neon-accent-title {
+            text-shadow: 0 0 25px rgba(249, 115, 22, 0.45), 0 2px 4px rgba(0, 0, 0, 0.9);
         }
-        /* Botón con brillo neon verde */
-        .btn-neon-glow {
-            box-shadow: 0 0 20px rgba(34, 197, 94, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        .neon-green-glow {
+            box-shadow: 0 0 25px rgba(34, 197, 94, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.25);
         }
-        /* Animación de pulso suave */
-        @keyframes pulse-glow {
+        /* Animación de pulso continuo para alta conversión */
+        @keyframes dynamicPulse {
             0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(34, 197, 94, 0.4); }
-            50% { transform: scale(1.02); box-shadow: 0 0 30px rgba(34, 197, 94, 0.7); }
+            50% { transform: scale(1.02); box-shadow: 0 0 32px rgba(34, 197, 94, 0.7); }
         }
-        .animate-pulse-glow {
-            animation: pulse-glow 2s infinite ease-in-out;
-        }
-        /* Checkbox modificado */
-        .custom-checkbox:checked {
-            background-color: #10b981;
-            border-color: #10b981;
+        .animate-dynamic-pulse {
+            animation: dynamicPulse 2s infinite ease-in-out;
         }
     </style>
 </head>
-<body class="stadium-glow text-white min-h-screen flex flex-col justify-between relative selection:bg-emerald-500 selection:text-black">
+<body class="dynamic-stadium text-white min-h-screen flex flex-col justify-between relative selection:bg-emerald-500 selection:text-black">
 
-    <!-- CANVAS PARA PARTÍCULAS FLOTANTES DE ESTADIO -->
+    <!-- CANVAS PARA PARTÍCULAS INTERACTIVAS FLOTANTES -->
     <canvas id="particles-canvas" class="absolute inset-0 pointer-events-none z-0"></canvas>
 
     <!-- CONTENEDOR PRINCIPAL -->
@@ -55,131 +48,161 @@
         
         <div class="w-full max-w-md text-center flex flex-col items-center">
             
-            <!-- Logo Superior (Estilo Sorti365) -->
-            <div class="mb-10 flex items-center gap-2 justify-center bg-black/40 backdrop-blur-md py-2 px-5 rounded-full border border-emerald-500/10 shadow-[0_0_15px_rgba(34,197,94,0.1)]">
-                <span class="text-emerald-500 animate-spin" style="animation-duration: 12s;">
-                    <!-- Trébol / Estrella Verde de Sorti365 SVG -->
+            <!-- Badge superior de canal en vivo -->
+            <div class="mb-5 inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/25 px-4 py-1.5 rounded-full backdrop-blur-md">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                <span class="text-[11px] font-bold uppercase tracking-widest text-emerald-400">Canal Oficial Verificado</span>
+            </div>
+
+            <!-- Logo Superior Sorti365 -->
+            <div class="mb-8 flex items-center gap-2.5 justify-center bg-black/50 backdrop-blur-md py-2.5 px-6 rounded-full border border-emerald-500/20 shadow-lg shadow-black/40">
+                <span class="text-emerald-400 animate-spin" style="animation-duration: 16s;">
+                    <!-- Trébol deportivo Sorti365 -->
                     <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12 2a3 3 0 0 0-3 3c0 1.14.64 2.13 1.58 2.63A4 4 0 0 0 7 11c0 1.14.64 2.13 1.58 2.63A3 3 0 1 0 12 22a3 3 0 0 0 3-3c0-1.14-.64-2.13-1.58-2.63A4 4 0 0 0 17 13c0-1.14-.64-2.13-1.58-2.63A3 3 0 0 0 12 2zm0 14a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm-4-4a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm8 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm-4-4a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/>
                     </svg>
                 </span>
-                <div>
-                    <span id="view-brand-name" class="font-black text-lg tracking-tight text-white uppercase">SEPY<span class="text-emerald-500">BET</span></span>
-                    <span class="block text-[8px] tracking-widest text-emerald-400/80 font-bold uppercase -mt-1">Atención Oficial</span>
+                <div class="text-left">
+                    <span class="font-black text-xl tracking-tight text-white uppercase block leading-none">Sorti<span class="text-emerald-400">365</span></span>
+                    <span class="block text-[8px] tracking-[0.2em] text-emerald-400/90 font-bold uppercase mt-0.5">Pronósticos & Juegos</span>
                 </div>
             </div>
 
-            <!-- TÍTULOS CENTRALES -->
-            <div class="mb-10 px-4 relative">
-                <!-- Luces de reflectores simuladas en el fondo del texto -->
-                <div class="absolute w-72 h-32 bg-emerald-500/15 rounded-full blur-3xl -translate-y-12 left-1/2 -translate-x-1/2 pointer-events-none"></div>
+            <!-- TÍTULOS CENTRALES DINÁMICOS (Atemporales y versátiles) -->
+            <div class="mb-8 px-4 relative">
+                <!-- Resplandor de fondo -->
+                <div class="absolute w-80 h-36 bg-emerald-500/15 rounded-full blur-3xl -translate-y-6 left-1/2 -translate-x-1/2 pointer-events-none"></div>
 
-                <span id="view-brand-subtitle" class="block text-sm font-bold uppercase tracking-[0.25em] text-emerald-400 mb-2">Aviso Importante</span>
+                <span class="block text-xs md:text-sm font-black uppercase tracking-[0.3em] text-emerald-400 mb-2">
+                    Comunidad VIP & Registro
+                </span>
                 
-                <h1 id="view-main-title" class="text-4xl md:text-5xl font-extrabold tracking-tighter text-white uppercase leading-none drop-shadow-lg mb-2">
-                    NUEVO
+                <h1 class="text-5xl md:text-6xl font-black tracking-tighter text-white uppercase leading-none drop-shadow-md mb-1.5">
+                    ACCESO
                 </h1>
-                <h1 id="view-accent-title" class="world-cup-title text-5xl md:text-6xl font-extrabold tracking-tighter text-emerald-500 uppercase leading-none drop-shadow-xl italic">
-                    NÚMERO
+                <h1 class="neon-accent-title text-6xl md:text-7xl font-black tracking-tighter bg-gradient-to-r from-orange-500 via-amber-400 to-orange-500 bg-clip-text text-transparent uppercase leading-none italic">
+                    EXCLUSIVO
                 </h1>
             </div>
 
-            <!-- ENTRADA TIPO CHECKBOX -->
-            <div class="w-full px-4 mb-8 text-left">
-                <div class="flex items-center justify-between mb-2 pl-1">
-                    <label class="block text-[13px] font-bold uppercase tracking-widest text-emerald-400">Paso Único</label>
+            <!-- ENTRADA DE TEXTO OBLIGATORIA -->
+            <div class="w-full px-4 mb-6 text-left">
+                <div class="flex items-center justify-between mb-2.5 pl-1">
+                    <label for="influencer-input" class="block text-[13px] font-black uppercase tracking-wider text-emerald-400">
+                        ¿Quién te recomendó?
+                    </label>
+                    <span class="text-[11px] text-emerald-400/70 font-semibold uppercase tracking-wider">
+                        Código o Nombre
+                    </span>
                 </div>
                 
-                <!-- Recuadro para marcar -->
-                <label class="relative flex items-start gap-4 cursor-pointer bg-black/75 border-2 border-emerald-500/20 hover:border-emerald-500/40 rounded-2xl p-4 transition-all backdrop-blur-md group">
-                    <div class="flex items-center h-6">
-                        <input type="checkbox" id="terms-checkbox" onchange="updateButtonState()" class="custom-checkbox w-6 h-6 border-2 border-slate-500 rounded-md appearance-none checked:bg-emerald-500 checked:border-transparent outline-none transition-all cursor-pointer flex items-center justify-center">
-                        <i id="check-icon" class="fas fa-check absolute text-white text-sm hidden pointer-events-none" style="left: 1.3rem;"></i>
-                    </div>
-                    <div class="flex flex-col">
-                        <span class="text-base font-bold text-white leading-tight">Ir al nuevo WhatsApp</span>
-                        <span class="text-[12px] text-slate-400 mt-1">Marca este cuadro para ser redirigido automáticamente al nuevo número de atención.</span>
-                    </div>
-                </label>
+                <!-- Caja de Input Estilo Ticket Premium con Icono de Validación -->
+                <div class="relative group">
+                    <span class="absolute left-4 top-1/2 -translate-y-1/2 text-lg text-emerald-400/80 pointer-events-none transition-transform group-focus-within:scale-110">
+                        🎟️
+                    </span>
+                    <input 
+                        type="text" 
+                        id="influencer-input" 
+                        oninput="updateMessage()" 
+                        placeholder="Escribe el nombre aquí..." 
+                        autocomplete="off"
+                        class="w-full bg-black/75 border-2 border-emerald-500/25 hover:border-emerald-500/50 rounded-2xl pl-12 pr-12 py-4 text-base font-bold text-white outline-none focus:border-emerald-400 focus:ring-4 focus:ring-emerald-500/15 transition-all backdrop-blur-md placeholder-slate-500"
+                    >
+                    <!-- Checkmark verde que aparece al escribir -->
+                    <span id="valid-check" class="hidden absolute right-4 top-1/2 -translate-y-1/2 w-6 h-6 bg-emerald-500 text-slate-950 rounded-full flex items-center justify-center font-black text-xs shadow-md">
+                        ✓
+                    </span>
+                </div>
+
+                <p class="text-[13px] text-slate-300/90 mt-2.5 pl-1 leading-relaxed font-medium">
+                    Ingresa el nombre del influencer o recomendado para activar los beneficios y bonos de tu cuenta Sorti365.
+                </p>
             </div>
 
-            <!-- BOTÓN ÚNICO DE ALTA CONVERSIÓN -->
+            <!-- BOTÓN CON BLOQUEO OBLIGATORIO HASTA QUE ESCRIBA -->
             <div class="w-full px-4 mb-6">
-                <a id="btn-main-action" href="#" target="_top" class="flex flex-col items-center justify-center w-full py-5 px-6 rounded-2xl transition-all duration-200">
-                    <span id="view-btn-text" class="text-xl font-black uppercase tracking-wider">🟢 ESPERANDO CONFIRMACIÓN</span>
-                    <span id="view-btn-subtext" class="text-xs font-semibold mt-1">Por favor, marca el recuadro arriba</span>
+                <a 
+                    id="btn-main-action" 
+                    href="#" 
+                    target="_top" 
+                    class="flex flex-col items-center justify-center w-full py-5 px-6 rounded-2xl transition-all duration-200"
+                >
+                    <span id="view-btn-text" class="text-xl font-black uppercase tracking-wider">🟢 INGRESAR AL CHAT VIP</span>
+                    <span id="view-btn-subtext" class="text-xs font-semibold mt-1">Registrarse & Obtener Pronósticos</span>
                 </a>
             </div>
 
-            <!-- Sello de Juego Responsable -->
-            <p id="view-disclaimer" class="text-[9px] text-emerald-500/60 uppercase tracking-widest font-semibold">
-                Soporte Oficial | Sepybet 2026
-            </p>
+            <!-- Sellos de confianza y legal -->
+            <div class="flex items-center justify-center gap-3 text-[10px] text-emerald-400/60 uppercase tracking-widest font-semibold">
+                <span>🛡️ Conexión Encriptada</span>
+                <span>•</span>
+                <span>+18 Juega Responsable</span>
+            </div>
 
         </div>
     </main>
 
-    <!-- Footer de la marca -->
-    <footer class="py-4 text-center text-[10px] text-emerald-500/30 font-semibold uppercase tracking-widest relative z-10 bg-black/25">
-        &copy; Sepybet - Nuevo Canal de Atención
+    <!-- Footer seguro y limpio (sin tuerca de configuración) -->
+    <footer class="py-4 text-center text-[10px] text-emerald-500/30 font-semibold uppercase tracking-widest relative z-10 bg-black/30 backdrop-blur-sm border-t border-white/5">
+        &copy; Sorti365 Secure Bridge Technology
     </footer>
 
-    <!-- Notificaciones Flotantes -->
-    <div id="toast" class="fixed bottom-6 right-6 transform translate-y-20 opacity-0 bg-emerald-500 text-slate-950 px-5 py-3 rounded-2xl shadow-xl flex items-center gap-3 transition-all duration-300 z-50 text-sm font-bold pointer-events-none">
+    <!-- Notificación Toast en pantalla -->
+    <div id="toast" class="fixed bottom-6 right-6 transform translate-y-20 opacity-0 bg-emerald-500 text-slate-950 px-5 py-3 rounded-2xl shadow-xl flex items-center gap-3 transition-all duration-300 z-50 text-sm font-bold">
         <span id="toast-msg">¡Listo!</span>
     </div>
 
-    <!-- SCRIPT DE EFECTOS VISUALES Y CONTROL DE REDIRECCIÓN -->
     <script>
+        // Configuración oficial y segura
         const config = {
-            phone: "593939161656",
-            btnText: "🟢 REDIRIGIENDO...",
-            btnSubtext: "Abriendo WhatsApp en un instante",
-            msgTemplate: "Hola Sepybet, me gustaría acceder al nuevo número de atención."
+            phone: "593963041121",
+            msgTemplate: "Hola vengo de parte de",
+            btnActiveText: "🟢 INGRESAR AL CHAT VIP"
         };
 
-        // Se ejecuta cada vez que el usuario interactúa con el checkbox
-        function updateButtonState() {
-            const checkbox = document.getElementById('terms-checkbox');
-            const checkIcon = document.getElementById('check-icon');
+        // Escucha y valida cada letra escrita en el campo
+        function updateMessage() {
+            const nameInput = document.getElementById('influencer-input');
+            const name = nameInput.value.trim();
             const btn = document.getElementById('btn-main-action');
             const btnText = document.getElementById('view-btn-text');
             const btnSubtext = document.getElementById('view-btn-subtext');
+            const validCheck = document.getElementById('valid-check');
 
-            if (!checkbox.checked) {
-                // Estado bloqueado
-                checkIcon.classList.add('hidden');
+            if (!name) {
+                // ESTADO BLOQUEADO: Campo vacío
                 btn.href = "#";
                 btn.onclick = function(e) {
                     e.preventDefault();
-                    showToast("Por favor, marca el recuadro para continuar.");
+                    showToast("Por favor, escribe quién te recomendó para activar el acceso");
+                    nameInput.focus();
                 };
                 
-                // Clases visuales apagadas
-                btn.className = "flex flex-col items-center justify-center w-full py-5 px-6 bg-slate-800 text-slate-500 rounded-2xl border-2 border-slate-700/50 cursor-not-allowed opacity-60 transition-all duration-200";
-                btnText.innerText = "🟢 ESPERANDO CONFIRMACIÓN";
-                btnSubtext.innerText = "Por favor, marca el recuadro arriba";
-                btnSubtext.className = "text-xs text-red-400 font-semibold mt-1";
+                btn.className = "flex flex-col items-center justify-center w-full py-5 px-6 bg-slate-800/90 text-slate-400 rounded-2xl border-2 border-slate-700/50 cursor-not-allowed opacity-65 transition-all duration-200";
+                btnText.innerText = "⚠️ INGRESA UN NOMBRE";
+                btnSubtext.innerText = "Es obligatorio escribir quién te recomendó";
+                btnSubtext.className = "text-xs text-red-400 font-bold mt-1";
+
+                validCheck.classList.add('hidden');
             } else {
-                // Estado activado
-                checkIcon.classList.remove('hidden');
-                const finalWaUrl = `https://wa.me/${config.phone}?text=${encodeURIComponent(config.msgTemplate)}`;
+                // ESTADO DESBLOQUEADO: Se escribió un nombre
+                const finalMsg = `${config.msgTemplate} ${name}`;
+                const finalWaUrl = `https://api.whatsapp.com/send?phone=${config.phone}&text=${encodeURIComponent(finalMsg)}`;
                 
                 btn.href = finalWaUrl;
-                btn.onclick = null;
+                btn.onclick = null; // Permite abrir WhatsApp
                 
-                // Clases visuales encendidas (Neón verde)
-                btn.className = "btn-neon-glow animate-pulse-glow flex flex-col items-center justify-center w-full py-5 px-6 bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-400 hover:to-green-500 active:scale-95 text-slate-950 rounded-2xl transition-all duration-200 cursor-pointer";
-                btnText.innerText = config.btnText;
-                btnSubtext.innerText = config.btnSubtext;
-                btnSubtext.className = "text-xs text-slate-950/75 font-semibold mt-1";
-                
-                // Redirección automática instantánea tras 800ms
-                setTimeout(() => { window.location.href = finalWaUrl; }, 800);
+                btn.className = "neon-green-glow animate-dynamic-pulse flex flex-col items-center justify-center w-full py-5 px-6 bg-gradient-to-r from-emerald-500 via-green-500 to-emerald-600 hover:from-emerald-400 hover:to-green-400 active:scale-95 text-slate-950 rounded-2xl transition-all duration-200 shadow-xl shadow-emerald-500/20";
+                btnText.innerText = config.btnActiveText;
+                btnSubtext.innerText = `Mensaje listo: "${finalMsg}"`;
+                btnSubtext.className = "text-xs text-slate-950/80 font-bold mt-1";
+
+                validCheck.classList.remove('hidden');
             }
         }
 
-        // Sistema de notificaciones
+        // Notificación flotante personalizada
         function showToast(message) {
             const toast = document.getElementById('toast');
             document.getElementById('toast-msg').innerText = message;
@@ -189,17 +212,10 @@
             setTimeout(() => {
                 toast.classList.remove('translate-y-0', 'opacity-100');
                 toast.classList.add('translate-y-20', 'opacity-0');
-            }, 3000);
+            }, 3200);
         }
 
-        // Inicialización
-        window.addEventListener('DOMContentLoaded', () => {
-            updateButtonState(); // Setea el botón como apagado al entrar
-            initParticles();
-            animateParticles();
-        });
-
-        // ================= SISTEMA DE PARTÍCULAS INTERACTIVO =================
+        // Sistema de partículas dinámicas en Canvas
         const canvas = document.getElementById('particles-canvas');
         const ctx = canvas.getContext('2d');
         let particlesArray = [];
@@ -215,11 +231,11 @@
         class Particle {
             constructor() {
                 this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height + canvas.height;
-                this.size = Math.random() * 3 + 0.5;
-                this.speedY = -(Math.random() * 0.8 + 0.2);
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2.8 + 0.6;
+                this.speedY = -(Math.random() * 0.7 + 0.2);
                 this.speedX = Math.random() * 0.4 - 0.2;
-                this.opacity = Math.random() * 0.5 + 0.1;
+                this.opacity = Math.random() * 0.5 + 0.15;
             }
 
             update() {
@@ -237,7 +253,7 @@
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fillStyle = '#22c55e';
-                ctx.shadowBlur = 10;
+                ctx.shadowBlur = 8;
                 ctx.shadowColor = '#22c55e';
                 ctx.fill();
                 ctx.restore();
@@ -246,7 +262,7 @@
 
         function initParticles() {
             particlesArray = [];
-            const numberOfParticles = Math.min(60, Math.floor(window.innerWidth / 15));
+            const numberOfParticles = Math.min(50, Math.floor(window.innerWidth / 18));
             for (let i = 0; i < numberOfParticles; i++) {
                 particlesArray.push(new Particle());
             }
@@ -260,6 +276,13 @@
             }
             requestAnimationFrame(animateParticles);
         }
+
+        // Ejecutar al iniciar la página
+        window.addEventListener('DOMContentLoaded', () => {
+            updateMessage(); // Inicia con el botón bloqueado
+            initParticles();
+            animateParticles();
+        });
     </script>
 </body>
 </html>
