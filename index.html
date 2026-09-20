@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sorti365 - Pronósticos y Juegos VIP</title>
+    <title>Sorti365 - Promociones y Beneficios VIP</title>
     <!-- Tailwind CSS para diseño fluido y ultra responsivo -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;0,700;0,800;0,900;1,800;1,900&display=swap" rel="stylesheet">
@@ -14,43 +14,43 @@
             overflow-x: hidden;
         }
 
-        /* Atmósfera de estadio envolvente (pantalla completa, sin encajonar) */
+        /* Atmósfera de estadio con profundidad y contraste oscuro */
         .stadium-immersion {
             background: 
-                radial-gradient(ellipse at 50% 0%, rgba(16, 185, 129, 0.32) 0%, transparent 65%),
-                radial-gradient(circle at 15% 45%, rgba(5, 150, 105, 0.16) 0%, transparent 45%),
-                radial-gradient(circle at 85% 75%, rgba(16, 185, 129, 0.12) 0%, transparent 50%),
-                linear-gradient(180deg, #020603 0%, #06180d 50%, #020603 100%);
+                radial-gradient(ellipse at 50% 0%, rgba(16, 185, 129, 0.25) 0%, transparent 60%),
+                radial-gradient(circle at 10% 40%, rgba(5, 150, 105, 0.12) 0%, transparent 45%),
+                radial-gradient(circle at 90% 70%, rgba(245, 158, 11, 0.08) 0%, transparent 45%),
+                linear-gradient(180deg, #020603 0%, #05140b 50%, #020603 100%);
         }
 
-        /* Tipografía deportiva atlética con relieve y resplandor limpio */
+        /* Tipografías con resplandor nítido */
         .text-glow-white {
-            text-shadow: 0 0 25px rgba(255, 255, 255, 0.25), 0 4px 10px rgba(0, 0, 0, 0.9);
+            text-shadow: 0 0 25px rgba(255, 255, 255, 0.3), 0 4px 10px rgba(0, 0, 0, 0.9);
         }
         
-        .text-glow-emerald {
-            text-shadow: 0 0 35px rgba(52, 211, 153, 0.5), 0 4px 12px rgba(0, 0, 0, 0.9);
+        .text-glow-gold {
+            text-shadow: 0 0 35px rgba(251, 191, 36, 0.55), 0 4px 14px rgba(0, 0, 0, 0.9);
         }
 
-        /* Animación de pulso continuo cuando el botón está desbloqueado */
-        @keyframes activeNeonPulse {
+        /* Pulsación dorada de alto contraste para el botón desbloqueado */
+        @keyframes goldPulse {
             0%, 100% {
                 transform: scale(1);
-                box-shadow: 0 0 25px rgba(34, 197, 94, 0.45), 0 0 50px rgba(34, 197, 94, 0.2);
+                box-shadow: 0 0 28px rgba(245, 158, 11, 0.5), 0 0 60px rgba(245, 158, 11, 0.25);
             }
             50% {
                 transform: scale(1.02);
-                box-shadow: 0 0 35px rgba(34, 197, 94, 0.7), 0 0 70px rgba(34, 197, 94, 0.3);
+                box-shadow: 0 0 40px rgba(245, 158, 11, 0.75), 0 0 85px rgba(245, 158, 11, 0.4);
             }
         }
-        .pulse-active {
-            animation: activeNeonPulse 2.2s infinite ease-in-out;
+        .btn-gold-pulse {
+            animation: goldPulse 2.2s infinite ease-in-out;
         }
 
-        /* Efecto de barrido de luz metálica sobre el botón activo */
+        /* Barrido de luz metálica sobre el botón activo */
         @keyframes sweepShine {
-            0% { transform: translateX(-150%) skewX(-20deg); }
-            45%, 100% { transform: translateX(250%) skewX(-20deg); }
+            0% { transform: translateX(-160%) skewX(-20deg); }
+            45%, 100% { transform: translateX(260%) skewX(-20deg); }
         }
         .btn-shine::before {
             content: '';
@@ -59,12 +59,12 @@
             left: 0;
             width: 45%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
-            animation: sweepShine 3s infinite ease-in-out;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+            animation: sweepShine 2.8s infinite ease-in-out;
             pointer-events: none;
         }
 
-        /* Vibración al intentar hacer clic si falta el nombre */
+        /* Vibración ante intento de clic bloqueado */
         @keyframes shakeError {
             0%, 100% { transform: translateX(0); }
             20% { transform: translateX(-6px); }
@@ -77,79 +77,72 @@
         }
     </style>
 </head>
-<body class="stadium-immersion text-white min-h-screen flex flex-col justify-between relative selection:bg-emerald-400 selection:text-black">
+<body class="stadium-immersion text-white min-h-screen flex flex-col justify-between relative selection:bg-amber-400 selection:text-black">
 
-    <!-- CANVAS DE LUCES Y PARTÍCULAS FLOTANTES DE ESTADIO -->
+    <!-- CANVAS DE LUCES Y PARTÍCULAS SUTILES -->
     <canvas id="particles-canvas" class="absolute inset-0 pointer-events-none z-0"></canvas>
 
-    <!-- CONTENEDOR PRINCIPAL FLUIDO (Formato abierto estilo Story/Mobile Splash) -->
+    <!-- CONTENEDOR PRINCIPAL FLUIDO -->
     <main class="flex-grow flex items-center justify-center px-4 py-8 relative z-10">
         
         <div class="w-full max-w-sm text-center flex flex-col items-center">
             
-            <!-- LOGO OFICIAL SORTI365 CON INSIGNIA ACTIVA -->
-            <div class="mb-8 flex items-center justify-between gap-3 w-full px-1">
-                <!-- Emblema de la marca -->
-                <div class="inline-flex items-center gap-2 bg-black/60 backdrop-blur-md py-2 px-4 rounded-full border border-emerald-500/20 shadow-lg shadow-black/50">
+            <!-- LOGO OFICIAL SORTI365 CENTRADO Y MÁS GRANDE -->
+            <div class="mb-9 w-full flex justify-center">
+                <div class="inline-flex items-center gap-3 bg-gradient-to-b from-black/80 to-black/50 backdrop-blur-md py-3 px-6 rounded-full border border-emerald-500/25 shadow-xl shadow-black/70">
                     <span class="text-emerald-400">
-                        <svg class="w-5 h-5 animate-spin" style="animation-duration: 14s;" viewBox="0 0 24 24" fill="currentColor">
+                        <svg class="w-6 h-6 animate-spin" style="animation-duration: 14s;" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 2a3 3 0 0 0-3 3c0 1.14.64 2.13 1.58 2.63A4 4 0 0 0 7 11c0 1.14.64 2.13 1.58 2.63A3 3 0 1 0 12 22a3 3 0 0 0 3-3c0-1.14-.64-2.13-1.58-2.63A4 4 0 0 0 17 13c0-1.14-.64-2.13-1.58-2.63A3 3 0 0 0 12 2zm0 14a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm-4-4a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm8 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm-4-4a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/>
                         </svg>
                     </span>
                     <div class="text-left">
-                        <span class="font-black text-sm tracking-tight text-white uppercase block leading-none">
+                        <span class="font-black text-xl tracking-tight text-white uppercase block leading-none">
                             SORTI<span class="text-emerald-400">365</span>
                         </span>
-                        <span class="block text-[7.5px] tracking-widest text-emerald-400/80 font-bold uppercase mt-0.5">
-                            Pronósticos y juegos
+                        <span class="block text-[9px] tracking-[0.25em] text-emerald-300/80 font-bold uppercase mt-1">
+                            Plataforma Oficial
                         </span>
                     </div>
                 </div>
-
-                <!-- Badge En Línea / VIP -->
-                <div class="inline-flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/30 px-3 py-1.5 rounded-full backdrop-blur-md">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                    <span class="text-[9.5px] font-black uppercase tracking-wider text-emerald-300">CHAT ACTIVO</span>
-                </div>
             </div>
 
-            <!-- TÍTULOS DINÁMICOS DEPORTIVOS -->
+            <!-- TÍTULOS DINÁMICOS DE PROMOCIONES -->
             <div class="mb-8 px-2 relative w-full">
                 
-                <!-- Destello de reflector superior sutil -->
-                <div class="absolute w-64 h-24 bg-emerald-500/15 rounded-full blur-2xl -top-6 left-1/2 -translate-x-1/2 pointer-events-none"></div>
+                <!-- Destello de reflector superior -->
+                <div class="absolute w-64 h-24 bg-amber-500/10 rounded-full blur-2xl -top-6 left-1/2 -translate-x-1/2 pointer-events-none"></div>
 
-                <span class="inline-block text-[11px] font-black uppercase tracking-[0.3em] text-emerald-400/90 mb-2">
-                    SOPORTE Y REGISTRO VIP
+                <span class="inline-block text-[11px] font-black uppercase tracking-[0.3em] text-amber-400 mb-2">
+                    BENEFICIOS Y REGISTRO VIP
                 </span>
                 
-                <h1 class="text-glow-white text-5xl sm:text-6xl font-black tracking-tight text-white uppercase leading-none mb-1">
-                    PRONÓSTICOS
+                <h1 class="text-glow-white text-4xl sm:text-5xl font-black tracking-tight text-white uppercase leading-none mb-1.5">
+                    PROMOCIONES
                 </h1>
                 
-                <h2 class="text-glow-emerald text-5xl sm:text-6xl font-black tracking-tighter bg-gradient-to-r from-emerald-200 via-emerald-400 to-green-500 bg-clip-text text-transparent uppercase leading-none italic">
-                    EXCLUSIVOS
+                <h2 class="text-glow-gold text-4xl sm:text-5xl font-black tracking-tighter bg-gradient-to-r from-amber-200 via-amber-400 to-yellow-500 bg-clip-text text-transparent uppercase leading-none italic">
+                    EXCLUSIVAS
                 </h2>
 
-                <p class="text-slate-400 text-xs font-medium mt-3 max-w-xs mx-auto leading-relaxed">
-                    Conéctate directamente con el equipo oficial de Sorti365 para validar tus beneficios y cuotas VIP.
+                <p class="text-slate-300/80 text-xs font-medium mt-3.5 max-w-xs mx-auto leading-relaxed">
+                    Conéctate directamente con el equipo oficial de Sorti365 para activar tus bonos, beneficios y promociones VIP.
                 </p>
             </div>
 
             <!-- ENTRADA DE NOMBRE DE REFERIDO (OBLIGATORIA) -->
             <div class="w-full mb-6 text-left">
                 <div class="flex items-center justify-between mb-2 px-1">
-                    <label for="influencer-input" class="block text-xs font-black uppercase tracking-wider text-emerald-400">
+                    <label for="influencer-input" class="block text-xs font-black uppercase tracking-wider text-amber-400">
                         ¿Quién te recomendó?
                     </label>
-                    <span class="text-[10px] text-emerald-400/70 font-bold uppercase tracking-wider">
+                    <span class="text-[10px] text-amber-400/80 font-bold uppercase tracking-wider">
                         Obligatorio *
                     </span>
                 </div>
                 
-                <!-- Caja de texto con icono deportivo e indicador de validación -->
+                <!-- Caja de texto con indicador de validación -->
                 <div class="relative group">
-                    <div class="absolute left-4 top-1/2 -translate-y-1/2 text-emerald-400/70 pointer-events-none group-focus-within:text-emerald-300 transition-colors">
+                    <div class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none group-focus-within:text-amber-400 transition-colors">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                         </svg>
@@ -161,7 +154,7 @@
                         oninput="validateAndSync()" 
                         placeholder="Escribe el nombre aquí..." 
                         autocomplete="off"
-                        class="w-full bg-black/70 border-2 border-emerald-500/25 hover:border-emerald-500/50 rounded-2xl pl-12 pr-11 py-4 text-base font-bold text-white outline-none focus:border-emerald-400 focus:ring-4 focus:ring-emerald-500/20 transition-all backdrop-blur-md placeholder-slate-500"
+                        class="w-full bg-black/75 border-2 border-slate-700/60 hover:border-amber-400/50 rounded-2xl pl-12 pr-11 py-4 text-base font-bold text-white outline-none focus:border-amber-400 focus:ring-4 focus:ring-amber-500/20 transition-all backdrop-blur-md placeholder-slate-500"
                     >
 
                     <!-- Checkmark animado al escribir -->
@@ -170,14 +163,13 @@
                     </span>
                 </div>
 
-                <p class="text-[12px] text-slate-400/90 mt-2 px-1 leading-normal font-normal">
-                    Ingresa el nombre de la persona o influencer para activar tu acceso directo a WhatsApp.
+                <p class="text-[12px] text-slate-400 mt-2 px-1 leading-normal font-normal">
+                    Ingresa el nombre de la persona o influencer para activar tus promociones en WhatsApp.
                 </p>
             </div>
 
-            <!-- BOTÓN PRINCIPAL DE ALTA CONVERSIÓN -->
+            <!-- BOTÓN PRINCIPAL DE ALTO CONTRASTE (DESTACADO Y VISIBLE) -->
             <div class="w-full mb-6">
-                <!-- target="_top" para escape fluido y compatibilidad total con Safari/iOS -->
                 <a 
                     id="btn-main-action" 
                     href="#" 
@@ -197,13 +189,13 @@
             </div>
 
             <!-- SELLO LEGAL Y RESPONSABILIDAD -->
-            <p class="text-[9.5px] text-emerald-500/60 uppercase tracking-widest font-bold">
+            <p class="text-[9.5px] text-slate-400/70 uppercase tracking-widest font-bold">
                 *18 | Juega con responsabilidad | Aplican T&C
             </p>
 
             <!-- FOOTER DE SEGURIDAD -->
-            <div class="mt-8 pt-4 border-t border-white/5 w-full flex items-center justify-center gap-2 text-[10px] text-emerald-500/40 uppercase tracking-wider font-semibold">
-                <svg class="w-3.5 h-3.5 text-emerald-500/60" fill="currentColor" viewBox="0 0 20 20">
+            <div class="mt-8 pt-4 border-t border-white/5 w-full flex items-center justify-center gap-2 text-[10px] text-slate-500 uppercase tracking-wider font-semibold">
+                <svg class="w-3.5 h-3.5 text-amber-400/70" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.649 2 6.319 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0110 1.944zM11 14a1 1 0 11-2 0 1 1 0 012 0zm0-7a1 1 0 10-2 0v3a1 1 0 102 0V7z" clip-rule="evenodd"/>
                 </svg>
                 <span>Sorti365 Official Secure Bridge</span>
@@ -213,14 +205,14 @@
     </main>
 
     <!-- NOTIFICACIÓN TOAST EN PANTALLA -->
-    <div id="toast" class="fixed bottom-6 right-6 transform translate-y-20 opacity-0 bg-emerald-400 text-slate-950 px-5 py-3 rounded-2xl shadow-2xl shadow-emerald-500/40 flex items-center gap-2.5 transition-all duration-300 z-50 text-xs sm:text-sm font-black">
+    <div id="toast" class="fixed bottom-6 right-6 transform translate-y-20 opacity-0 bg-amber-400 text-slate-950 px-5 py-3 rounded-2xl shadow-2xl shadow-amber-500/40 flex items-center gap-2.5 transition-all duration-300 z-50 text-xs sm:text-sm font-black">
         <span class="text-base">⚠️</span>
         <span id="toast-msg">Por favor ingresa un nombre para continuar</span>
     </div>
 
     <!-- LÓGICA DE INTERACCIÓN Y CONTROL DE ESTADOS -->
     <script>
-        // Configuración con el nuevo número oficial
+        // Configuración con el número de WhatsApp oficial
         const config = {
             phone: "593991570087",
             msgTemplate: "Hola vengo de parte de"
@@ -250,36 +242,36 @@
                     nameInput.focus();
                 };
 
-                // Estilo bloqueado oscuro con opacidad
+                // Estilo bloqueado oscuro con excelente contraste
                 btn.className = "relative overflow-hidden flex flex-col items-center justify-center w-full py-4.5 px-6 rounded-2xl transition-all duration-300 select-none bg-slate-900/90 text-slate-400 border border-slate-700/60 cursor-not-allowed opacity-75 shadow-inner";
                 
                 btnIcon.innerText = "🔒";
                 btnText.innerText = "INGRESA UN NOMBRE";
                 btnSubtext.innerText = "Es obligatorio escribir quién te recomendó";
-                btnSubtext.className = "text-[11px] text-emerald-400/60 font-semibold mt-0.5 tracking-normal";
+                btnSubtext.className = "text-[11px] text-amber-400/80 font-semibold mt-0.5 tracking-normal";
 
                 validBadge.classList.add('hidden');
 
             } else {
-                // ================= ESTADO DESBLOQUEADO =================
+                // ================= ESTADO DESBLOQUEADO CON ALTO CONTRASTE =================
                 const finalMsg = `${config.msgTemplate} ${name}`;
                 const finalWaUrl = `https://api.whatsapp.com/send?phone=${config.phone}&text=${encodeURIComponent(finalMsg)}`;
 
                 btn.href = finalWaUrl;
                 btn.onclick = null; // Permite abrir WhatsApp fluidamente
 
-                // Estilo activo: Verde neón radiante con brillo metálico y pulsación
-                btn.className = "btn-shine pulse-active relative overflow-hidden flex flex-col items-center justify-center w-full py-4.5 px-6 rounded-2xl transition-all duration-300 select-none bg-gradient-to-r from-emerald-400 via-green-400 to-emerald-500 hover:from-emerald-300 hover:to-green-400 active:scale-95 text-slate-950 font-black shadow-xl shadow-emerald-500/30 cursor-pointer";
+                // Estilo activo: Oro / Ámbar Neón radiante de altísimo contraste con brillo metálico
+                btn.className = "btn-shine btn-gold-pulse relative overflow-hidden flex flex-col items-center justify-center w-full py-4.5 px-6 rounded-2xl transition-all duration-300 select-none bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 hover:from-amber-200 hover:to-yellow-300 active:scale-95 text-stone-950 font-black shadow-2xl shadow-amber-500/40 cursor-pointer border border-amber-200/50";
                 
-                // Icono oficial de WhatsApp en SVG limpio
+                // Icono oficial de WhatsApp con acento oscuro para contraste
                 btnIcon.innerHTML = `
-                    <svg class="w-5 h-5 text-slate-950 fill-current inline-block" viewBox="0 0 24 24">
+                    <svg class="w-5 h-5 text-stone-950 fill-current inline-block" viewBox="0 0 24 24">
                         <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.717-1.458L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.965C16.528 2.01 14.069.99 11.519.99c-5.44 0-9.866 4.372-9.87 9.802 0 1.964.517 3.882 1.5 5.592l-1.01 3.693 3.793-.983zm11.233-7.531c-.301-.15-1.78-.879-2.056-.979-.275-.1-.475-.15-.675.15-.199.299-.773.979-.948 1.178-.175.199-.35.224-.651.075-2.433-1.214-3.931-2.28-5.393-4.761-.383-.649.383-.603 1.097-2.008.118-.236.059-.441-.03-.591-.089-.15-.675-1.613-.925-2.213-.244-.582-.49-.5-.675-.51-.174-.01-.374-.012-.574-.012s-.524.075-.798.374c-.275.299-1.047 1.022-1.047 2.494 0 1.472 1.073 2.892 1.222 3.091.15.199 2.112 3.224 5.116 4.525.715.31 1.273.495 1.708.633.719.228 1.373.196 1.891.119.577-.087 1.78-.727 2.03-1.43.25-.701.25-1.3.174-1.428-.075-.124-.275-.199-.576-.349z"/>
                     </svg>
                 `;
-                btnText.innerText = "INGRESAR AL CHAT VIP";
+                btnText.innerText = "ACTIVAR PROMOCIONES VIP";
                 btnSubtext.innerText = `Mensaje listo: "${finalMsg}"`;
-                btnSubtext.className = "text-[11px] text-slate-950/80 font-bold mt-0.5 tracking-normal";
+                btnSubtext.className = "text-[11px] text-stone-950/80 font-bold mt-0.5 tracking-normal";
 
                 validBadge.classList.remove('hidden');
             }
@@ -298,7 +290,7 @@
             }, 3000);
         }
 
-        // Animación suave de partículas de luz verdes en Canvas
+        // Animación suave de partículas en Canvas
         const canvas = document.getElementById('particles-canvas');
         const ctx = canvas.getContext('2d');
         let particlesArray = [];
@@ -311,14 +303,15 @@
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
-        class StadiumParticle {
+        class AmbientParticle {
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2.2 + 0.6;
-                this.speedY = -(Math.random() * 0.5 + 0.15);
+                this.size = Math.random() * 2 + 0.6;
+                this.speedY = -(Math.random() * 0.4 + 0.15);
                 this.speedX = Math.random() * 0.3 - 0.15;
-                this.opacity = Math.random() * 0.5 + 0.15;
+                this.opacity = Math.random() * 0.45 + 0.15;
+                this.isGold = Math.random() > 0.65;
             }
 
             update() {
@@ -335,9 +328,9 @@
                 ctx.globalAlpha = this.opacity;
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = '#34d399';
+                ctx.fillStyle = this.isGold ? '#fbbf24' : '#34d399';
                 ctx.shadowBlur = 8;
-                ctx.shadowColor = '#10b981';
+                ctx.shadowColor = this.isGold ? '#f59e0b' : '#10b981';
                 ctx.fill();
                 ctx.restore();
             }
@@ -345,9 +338,9 @@
 
         function initParticles() {
             particlesArray = [];
-            const particleCount = Math.min(45, Math.floor(window.innerWidth / 20));
+            const particleCount = Math.min(40, Math.floor(window.innerWidth / 22));
             for (let i = 0; i < particleCount; i++) {
-                particlesArray.push(new StadiumParticle());
+                particlesArray.push(new AmbientParticle());
             }
         }
 
