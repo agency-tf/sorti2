@@ -163,27 +163,23 @@
                     </span>
                 </div>
 
-                <p class="text-[12px] text-slate-400 mt-2 px-1 leading-normal font-normal">
+                <!-- Texto explicativo ahora centrado para mejor equilibrio visual -->
+                <p class="text-[12px] text-slate-400 mt-2.5 px-3 leading-relaxed font-normal text-center">
                     Ingresa el nombre de la persona o influencer para activar tus promociones en WhatsApp.
                 </p>
             </div>
 
-            <!-- BOTÓN PRINCIPAL DE ALTO CONTRASTE (DESTACADO Y VISIBLE) -->
+            <!-- BOTÓN PRINCIPAL DE ALTO CONTRASTE (LIMPIO, SIN SUBTEXTO DE MENSAJE) -->
             <div class="w-full mb-6">
                 <a 
                     id="btn-main-action" 
                     href="#" 
                     target="_top" 
-                    class="relative overflow-hidden flex flex-col items-center justify-center w-full py-4.5 px-6 rounded-2xl transition-all duration-300 select-none"
+                    class="relative overflow-hidden flex items-center justify-center gap-2.5 w-full py-4.5 px-6 rounded-2xl transition-all duration-300 select-none"
                 >
-                    <div class="flex items-center justify-center gap-2">
-                        <span id="btn-icon" class="text-lg">🔒</span>
-                        <span id="btn-text" class="text-base sm:text-lg font-black uppercase tracking-wider">
-                            INGRESA UN NOMBRE
-                        </span>
-                    </div>
-                    <span id="btn-subtext" class="text-[11px] font-semibold mt-0.5 tracking-normal">
-                        Escribe quién te recomendó para continuar
+                    <span id="btn-icon" class="text-lg">🔒</span>
+                    <span id="btn-text" class="text-base sm:text-lg font-black uppercase tracking-wider">
+                        INGRESA UN NOMBRE
                     </span>
                 </a>
             </div>
@@ -224,7 +220,6 @@
             const name = nameInput.value.trim();
             const btn = document.getElementById('btn-main-action');
             const btnText = document.getElementById('btn-text');
-            const btnSubtext = document.getElementById('btn-subtext');
             const btnIcon = document.getElementById('btn-icon');
             const validBadge = document.getElementById('badge-valid');
 
@@ -243,12 +238,10 @@
                 };
 
                 // Estilo bloqueado oscuro con excelente contraste
-                btn.className = "relative overflow-hidden flex flex-col items-center justify-center w-full py-4.5 px-6 rounded-2xl transition-all duration-300 select-none bg-slate-900/90 text-slate-400 border border-slate-700/60 cursor-not-allowed opacity-75 shadow-inner";
+                btn.className = "relative overflow-hidden flex items-center justify-center gap-2.5 w-full py-4.5 px-6 rounded-2xl transition-all duration-300 select-none bg-slate-900/90 text-slate-400 border border-slate-700/60 cursor-not-allowed opacity-75 shadow-inner";
                 
                 btnIcon.innerText = "🔒";
                 btnText.innerText = "INGRESA UN NOMBRE";
-                btnSubtext.innerText = "Es obligatorio escribir quién te recomendó";
-                btnSubtext.className = "text-[11px] text-amber-400/80 font-semibold mt-0.5 tracking-normal";
 
                 validBadge.classList.add('hidden');
 
@@ -261,7 +254,7 @@
                 btn.onclick = null; // Permite abrir WhatsApp fluidamente
 
                 // Estilo activo: Oro / Ámbar Neón radiante de altísimo contraste con brillo metálico
-                btn.className = "btn-shine btn-gold-pulse relative overflow-hidden flex flex-col items-center justify-center w-full py-4.5 px-6 rounded-2xl transition-all duration-300 select-none bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 hover:from-amber-200 hover:to-yellow-300 active:scale-95 text-stone-950 font-black shadow-2xl shadow-amber-500/40 cursor-pointer border border-amber-200/50";
+                btn.className = "btn-shine btn-gold-pulse relative overflow-hidden flex items-center justify-center gap-2.5 w-full py-4.5 px-6 rounded-2xl transition-all duration-300 select-none bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 hover:from-amber-200 hover:to-yellow-300 active:scale-95 text-stone-950 font-black shadow-2xl shadow-amber-500/40 cursor-pointer border border-amber-200/50";
                 
                 // Icono oficial de WhatsApp con acento oscuro para contraste
                 btnIcon.innerHTML = `
@@ -270,8 +263,6 @@
                     </svg>
                 `;
                 btnText.innerText = "ACTIVAR PROMOCIONES VIP";
-                btnSubtext.innerText = `Mensaje listo: "${finalMsg}"`;
-                btnSubtext.className = "text-[11px] text-stone-950/80 font-bold mt-0.5 tracking-normal";
 
                 validBadge.classList.remove('hidden');
             }
